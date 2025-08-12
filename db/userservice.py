@@ -1,19 +1,19 @@
 from db.models import User
 from db import get_db
+from api.user_api.schemas import UserCreate
 
 
-def create_user_db(name, username, email, password,
-                   birthday = None, surname= None, ciy=None):
+def create_user_db(user_data: UserCreate):
     db = next(get_db())
-    user = db.query(User).filter_by(username=username).first()
+    user_dict = user_data.model_dump()
+    user = db.query(User).filter_by(username=user_data.username).first()
     if user:
         return False
 
-    new_user = User(name=name, surname=surname, username=username, email=email,
-                    password=password, birthday=birthday, city=ciy)
+    new_user = User(**user_dict)
     db.add(new_user)
     db.commit()
-    return True
+    return new_user.id
 
 
 def get_all_or_exact_user_db(user_id= 0):

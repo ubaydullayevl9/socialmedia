@@ -44,9 +44,9 @@ class Comment(Base):
     __tablename__ = "comments"
     id = Column(Integer, autoincrement= True, primary_key=True)
     text = Column(String, nullable=False)
-    post_id = Column(Integer, ForeignKey('userposts.id', nullable=False))
+    post_id = Column(Integer, ForeignKey('userposts.id'), nullable=False)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False )
     reg_date = Column(DateTime, default=datetime.now())
 
     user_fk = relationship(User, lazy="subquery")
-    post_fk = relationship(PostPhoto, lazy="subquery")
+    post_fk = relationship(UserPost, lazy="subquery")

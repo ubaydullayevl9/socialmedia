@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 #Указываем тип бд(postrgres, sqlite  )
-SQL_DATABASE = "sqlite:///socialmedia.db"
+SQL_DATABASE = "sqlite:///socialmedia64.db"
 
 #Создаем движок
 engine = create_engine(SQL_DATABASE)
