@@ -15,11 +15,11 @@ async def create_post_api(post:UserPostCreate):
 async def get_all_post_api():
     return get_all_posts_db()
 
-@post_router.get("/get_exact_post{post_id}", response_model=UserPostRead)
+@post_router.get("/get_exact_post/{post_id}", response_model=UserPostRead)
 async def get_exact_post_api(post_id: int):
     return get_exact_post_db(post_id)
 
-@post_router.get("/get_all_user_post{user_id}", response_model=List[UserPostRead])
+@post_router.get("/get_all_user_post/{user_id}", response_model=List[UserPostRead])
 async def get_all_user_post_api(user_id: int):
     return get_exact_user_post_db(user_id)
 
